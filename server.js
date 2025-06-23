@@ -18,5 +18,14 @@ app.use('/api/folders', folderRoutes);
 app.use('/api/gallery', galleryRoutes);
 app.use('/api/image', imageRoutes); // ✅ Added
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.get('/', (req, res) => {
+  res.send('Travel Memories Backend on Vercel');
+});
+
+module.exports = app; // ✅ Important for Vercel
+
+// ✅ Local development only
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
